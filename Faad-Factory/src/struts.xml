@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-<package name="registration" namespace="core/registration" extends="struts-default">
-<action name="register" class="com.faadfactory.core.actions.Registration">
+
+<package name="registration" namespace="/core/registration" extends="struts-default">
+<action name="register_1" class="com.app.core.actions.Registration" method="r1">
+<result name="success">registration_2.jsp</result>
 </action>
 </package>
 </struts>
