@@ -3,8 +3,14 @@
 <struts>
 
 <package name="registration" namespace="/core/registration" extends="struts-default">
-<action name="register_1" class="com.app.core.actions.Registration" method="r1">
+<action name="register_1" class="com.app.core.registration.actions.Registration1" method="r1">
 <result name="success">registration_2.jsp</result>
+<result name="input">registration_1.jsp</result>
+</action>
+
+<action name="register_2" class="com.app.core.registration.actions.Registration2" method="r2">
+<result name="success">registration_3.jsp</result>
+<result name="input">registration_2.jsp</result>
 </action>
 </package>
 </struts>

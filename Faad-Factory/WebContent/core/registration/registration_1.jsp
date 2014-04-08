@@ -8,11 +8,13 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div class="form">
 <s:form action="register_1" method="post">
 <s:textfield name="firstName" label="First Name "/>
 <s:textfield name="lastName" label="Last Name "/>
 <s:textfield name="eMail" label="E-Mail "/>
 <s:submit value="Next"/>
 </s:form>
+</div>
 </body>
 </html>
