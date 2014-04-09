@@ -2,7 +2,10 @@ package com.app.core.registration.actions;
 
 import java.util.ArrayList;
 import java.util.Map;
+
+import com.app.core.Engine;
 import com.app.core.models.User;
+
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.app.core.actions.Registration;
@@ -112,8 +115,30 @@ public class Registration2 extends ActionSupport implements SessionAware{
 	{
 		System.out.println("r2 running");
 		User user = (User)session.get("user");
-		user.set
+		user.setAccountType(accountType);
+		user.setUserName(userName);
+		user.setPassword(password);
+		session.put("widgets",getWidgets());
+		
 		return SUCCESS;
+	}
+/**
+ * This method gets the appropriate widgets for the selected Account Type
+ * @return
+ */
+	private String[] getWidgets() {
+		String widgets = null;
+		String[] widgetList=null;
+		if(accountType.equals("Actor"))
+			widgets = getText("registration.widgets.actor");
+		else if(accountType.equals("Director"))
+			widgets = getText("registration.widgets.director");
+		else if(accountType.equals("Producer"))
+			widgets = getText("registration.widgets.producer");
+		else 
+			widgets = getText("registration.widgets.other");
+		widgetList = Engine.getStringArrayFromCSVString(widgets);	
+		return widgetList;
 	}
 
 	@Override

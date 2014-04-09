@@ -7,23 +7,20 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Choose Widgets</title>
-<style>
-.container {
-
-}
-.box{
-background:
-}
-</style>
-
+<%
+	String[] widgets = (String[])session.getAttribute("widgets");
+	int count=0;
+	for(String temp:widgets)
+	{
+		System.out.println(temp);
+		count++;		
+	}
+%>
 
 </head>
-<body>
-<div class="container">
-<div class="box">
-
-</div>
-</div>
+<body >
+<form id="form">
+</form>
 
 </body>
 </html>
