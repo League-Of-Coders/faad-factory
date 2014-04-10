@@ -8,7 +8,7 @@ import com.app.core.models.User;
 
 import org.apache.struts2.interceptor.SessionAware;
 
-import com.app.core.actions.Registration;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.*;
 
