@@ -1,7 +1,9 @@
 package com.app.core;
 
 import java.awt.HeadlessException;
+import java.util.ArrayList;
 import java.util.Properties;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 
@@ -18,6 +20,24 @@ public class AppEngine extends ActionSupport{
 	{
 		String[] list = input.split(",");
 		return list;
+	}
+	/**
+	 * 
+	 */
+	public static String getCSVStringFromArrayList(ArrayList<String> widgets)
+	{
+		String widgetsAsString = new String();
+		for(String widget:widgets)
+		{
+			widgetsAsString+=widget+",";
+		}
+		/*
+		 * remove last ,
+		 */
+		if (widgetsAsString.length() > 0 && widgetsAsString.charAt(widgetsAsString.length()-1)==',') {
+			widgetsAsString = widgetsAsString.substring(0, widgetsAsString.length()-1);
+		 }
+		return widgetsAsString;
 	}
 	/**
 	 * Email main method

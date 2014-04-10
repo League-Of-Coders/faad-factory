@@ -2,10 +2,12 @@ package com.app.core.models;
 
 import java.util.ArrayList;
 
+import com.app.core.AppEngine;
+
 
 
 public class User {
-private String firstName,lastName,eMail,accountType,userName,password;
+private String firstName,lastName,eMail,accountType,userName,password,widgetsAsString;
 private boolean active;
 private ArrayList<String> widgets;
 public String registrationTimeStampToken;
@@ -40,6 +42,10 @@ public void setAccountType(String accountType)
 public void setWidgets(ArrayList<String> widgets)
 {
 	this.widgets=widgets;
+}
+public void setWidgetsAsString(String widgetsAsString)
+{
+	this.widgetsAsString = widgetsAsString;
 }
 public void setActive(boolean active)
 {
@@ -76,6 +82,19 @@ public String getAccountType()
 public ArrayList<String> getWidgets()
 {
 	return widgets;
+}
+public String getWidgetsAsString()
+{
+	String widgetsAsString;
+	if(this.widgetsAsString==null)
+	{
+		widgetsAsString = AppEngine.getCSVStringFromArrayList(widgets);
+		return widgetsAsString;
+	}
+	else
+	{
+		return this.widgetsAsString;
+	}
 }
 public boolean getActive()
 {
