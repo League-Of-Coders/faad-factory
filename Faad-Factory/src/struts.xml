@@ -22,6 +22,12 @@
 <action name="register_4" class="com.app.core.registration.actions.Registration4" method="r4">
 <result name="success">/home.jsp</result>
 <result name="input">registration_4.jsp</result>
+<result name="error">errorPages/mailfail.html</result>
+</action>
+
+<action name="register_5" class="com.app.core.registration.actions.Registration5" method="r5">
+<result name="success">/profile.jsp</result>
+<result name="error">errorPages/mailauthfail.html</result>
 </action>
 
 </package>

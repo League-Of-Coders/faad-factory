@@ -3,7 +3,7 @@ package com.app.core.registration.actions;
 import java.util.ArrayList;
 import java.util.Map;
 
-import com.app.core.Engine;
+import com.app.core.AppEngine;
 import com.app.core.models.User;
 
 import org.apache.struts2.interceptor.SessionAware;
@@ -137,7 +137,7 @@ public class Registration2 extends ActionSupport implements SessionAware{
 			widgets = getText("registration.widgets.producer");
 		else 
 			widgets = getText("registration.widgets.other");
-		widgetList = Engine.getStringArrayFromCSVString(widgets);	
+		widgetList = AppEngine.getStringArrayFromCSVString(widgets);	
 		return widgetList;
 	}
 

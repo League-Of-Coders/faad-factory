@@ -6,8 +6,9 @@ import java.util.ArrayList;
 
 public class User {
 private String firstName,lastName,eMail,accountType,userName,password;
+private boolean active;
 private ArrayList<String> widgets;
-
+public String registrationTimeStampToken;
 public void setFirstName(String firstName)
 {
 	this.firstName = firstName;
@@ -40,6 +41,10 @@ public void setWidgets(ArrayList<String> widgets)
 {
 	this.widgets=widgets;
 }
+public void setActive(boolean active)
+{
+	this.active= active;
+}
 /*
  * Getters
  */
@@ -71,5 +76,9 @@ public String getAccountType()
 public ArrayList<String> getWidgets()
 {
 	return widgets;
+}
+public boolean getActive()
+{
+	return active;
 }
 }
