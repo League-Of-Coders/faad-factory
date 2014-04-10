@@ -9,4 +9,23 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+ <servlet>
+        <servlet-name>jcaptcha</servlet-name>
+        <servlet-class>com.octo.captcha.module.servlet.image.SimpleImageCaptchaServlet</servlet-class>
+</servlet>
+<servlet-mapping>
+        <servlet-name>jcaptcha</servlet-name>
+        <url-pattern>/core/registration/jcaptcha.jpg</url-pattern>
+</servlet-mapping>
+
+
+<filter>
+    <filter-name>struts2</filter-name>
+    <filter-class>org.apache.struts2.dispatcher.FilterDispatcher</filter-class>
+</filter>
+<filter-mapping>
+    <filter-name>struts2</filter-name>
+    <url-pattern>/*</url-pattern>
+</filter-mapping>
+
 </web-app>
