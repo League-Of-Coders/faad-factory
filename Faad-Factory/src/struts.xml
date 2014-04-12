@@ -20,15 +20,32 @@
 </action>
 
 <action name="register_4" class="com.app.core.registration.actions.Registration4" method="r4">
-<result name="success">/home.jsp</result>
+<result name="success">Regcheck.jsp</result>
 <result name="input">registration_4.jsp</result>
 <result name="error">errorPages/mailfail.html</result>
 </action>
 
 <action name="register_5" class="com.app.core.registration.actions.Registration5" method="r5">
-<result name="success">/profile.jsp</result>
+<result name="success">/welcome.jsp</result>
 <result name="error">errorPages/mailauthfail.html</result>
 </action>
 
 </package>
+<package name="login" namespace="/core/login" extends="struts-default">
+<action name="log_1" class="com.app.core.login.actions.Login1" method="l1">
+<result name="success">loginsuccess.jsp</result>
+<result name="error">loginerror.html</result>
+</action>
+
+
+
+
+</package>
+
+
+
+
+
+
+
 </struts>

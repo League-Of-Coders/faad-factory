@@ -2,17 +2,18 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="com.kogent.hibernate.Employee" table="EMPLOYEE" schema="SCOTT">
-        <id name="employeeId" type="java.lang.Integer">
-            <column name="EMPLOYEE_ID" precision="5" scale="0" />
-            <generator class="assigned" />
+    <class name="com.app.core.models.User" table="register" schema="FaadFactoryDB">
+        <id name="id" type="java.lang.Integer">
+            <column name="ID" precision="5" scale="0" />
+            <generator class="increment" />
         </id>
-        <property name="name" type="java.lang.String">
-            <column name="NAME" length="20" />
+        <property name="firstname" type="java.lang.String">
+            <column name="FirstName" length="20" />
         </property>
-        <property name="age" type="java.lang.Integer">
-            <column name="AGE" precision="3" scale="0" />
+        <property name="lastname" type="java.lang.String">
+            <column name="LastName" length="20" />
         </property>
+        
         <property name="salary" type="java.lang.Double">
             <column name="SALARY" precision="7" scale="0" />
         </property>
