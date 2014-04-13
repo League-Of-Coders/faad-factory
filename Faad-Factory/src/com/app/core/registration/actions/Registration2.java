@@ -77,7 +77,7 @@ public class Registration2 extends ActionSupport implements SessionAware{
 	{
 		this.cPassword = cPassword;
 	}
-	@RequiredStringValidator(message = "Please select a Preset Account or select 'Others' to customize ")
+	@RequiredStringValidator(message = "Please select a preset account or select 'Others' to customize ")
 	public void setAccountType(String accountType)
 	{
 		this.accountType = accountType;

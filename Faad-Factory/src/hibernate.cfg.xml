@@ -8,16 +8,16 @@
 <session-factory>
 	<property name="connection.username">root</property>
 	<property name="connection.password">root123</property>
-	<property name="connection.url">
-		jdbc:mysql://localhost/FaadFactoryDb
-	</property>
-	<property name="dialect">
-		org.hibernate.dialect.MySQLDialect
-	</property>
-	<property name="connection.driver_class">
-		com.mysql.jdbc.Driver
-	</property>
-	<mapping resource="com/app/core/models/User.hbm.xml" />
+	<property name="connection.url">jdbc:mysql://localhost/FaadFactoryDb</property>
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+	<!-- echo all sql to stdout -->
+	<property name ="show_sql">true</property>
+	<!-- drop and recreate database schema on startup -->
+	<property name="hbm2ddl.auto">create</property>
+	<!-- model class/xml file -->
+	<!--mapping resource="com/app/core/models/User.hbm.xml" / -->
+	<mapping class="com.app.core.models.User" />
 </session-factory>
 
 </hibernate-configuration>

@@ -1,15 +1,31 @@
 package com.app.core;
 
+
 import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import javax.mail.*;
 import javax.mail.internet.*;
-
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AppEngine extends ActionSupport{
+	
+	private static final long serialVersionUID = 1L;
+	
+	private static org.hibernate.Session hibernateSession;
+	private static org.hibernate.SessionFactory sessionFactory = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+	
+		
+	/**
+	 * Create a new hibernate session. 
+	 * @return
+	 */
+	public static org.hibernate.Session getHibernateSession()
+	{
+		hibernateSession = sessionFactory.openSession();
+		return hibernateSession;
+	}
 	
 	/**
 	 * takes a Comma Separated String as input and returns individual values as String Array
@@ -22,7 +38,7 @@ public class AppEngine extends ActionSupport{
 		return list;
 	}
 	/**
-	 * 
+	 * convert widget list to Comma Separated Value String. Only used in registration as hibernate takes care of these conversions elsewhere 
 	 */
 	public static String getCSVStringFromArrayList(ArrayList<String> widgets)
 	{
@@ -39,6 +55,8 @@ public class AppEngine extends ActionSupport{
 		 }
 		return widgetsAsString;
 	}
+	
+	
 	/**
 	 * Email main method
 	 */

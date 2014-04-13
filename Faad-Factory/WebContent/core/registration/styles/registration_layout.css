@@ -1,0 +1,18 @@
+#formWrapper {
+	background-image: none;
+	background-repeat: no-repeat;
+	margin-top: 0px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	background-color: #393939;
+}
+.form {
+	height: 300px;
+	width: 300px;
+	margin-top: 100px;
+	margin-right: 100px;
+	margin-bottom: auto;
+	margin-left: auto;
+	position: relative;
+}

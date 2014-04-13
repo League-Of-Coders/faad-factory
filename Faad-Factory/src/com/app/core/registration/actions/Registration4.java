@@ -97,6 +97,7 @@ private boolean sendMailConfirmationLink(DateTime dt) {
 	String to = user.getEMail();
 	String subject = getText("registration.mail.subject");
 	String confirmationLink = getText("app.contextRoot") + "/core/registration/register_5?id="+ id;
+	System.out.println("CONFIRMATION LINK: " + confirmationLink);
 	String message = "Hi " + user.getFirstName() +
 					"\nTo activate your Film And Animation Developer Factory account now" +
 					"\nclick here: " + confirmationLink;

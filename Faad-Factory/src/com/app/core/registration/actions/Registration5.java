@@ -7,12 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.struts2.interceptor.ApplicationAware;
 
 
+
+import org.hibernate.Session;
+
+import com.app.core.AppEngine;
 import com.app.core.models.User;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class Registration5 extends ActionSupport implements ApplicationAware{
 	private String id;
 	private Map<String,Object> application;
+	private Session session;
 	public String getId()
 	{
 		return id;
@@ -31,14 +36,24 @@ public class Registration5 extends ActionSupport implements ApplicationAware{
 		
 		System.out.println("Retrieveing user from application scope with id : " + id);
 		User user = (User)application.get(id);
+		/*
+		 * create a record in database, redirect to profile
+		 */
 		try{
-		user.setActive(true);
-		System.out.println(user.getFirstName() + " is now " + user.getActive());
-		return SUCCESS;
+			user.setActive(true);
+			System.out.println(user.getFirstName() + " is now " + user.getActive() + "writing to database");
+			session = AppEngine.getHibernateSession();
+			session.beginTransaction();
+			session.persist(user);
+			session.getTransaction().commit();
+			return SUCCESS;
 		}catch(Exception ex)
 		{
 			System.out.println("error from r5 :" + ex.getMessage());
 			return "error";
+		}
+		finally {
+			session.close();
 		}
 	}
 	@Override
