@@ -2,15 +2,41 @@ package com.app.core.models;
 
 import java.util.ArrayList;
 
+
+
+
+
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Id;
+
 import com.app.core.AppEngine;
+import com.app.core.models.UserDao;
 
 
 
-public class User {
+
+
+@Entity
+@Table(name= "")
+public class User 
+{
+	@Id
+	
+	private int id;
 private String firstName,lastName,eMail,accountType,userName,password,widgetsAsString;
 private boolean active;
 private ArrayList<String> widgets;
 public String registrationTimeStampToken;
+public int getId() 
+{
+	return id;
+}
+public void setId(int id)
+{
+	this.id = id;
+}
 public void setFirstName(String firstName)
 {
 	this.firstName = firstName;
@@ -100,4 +126,9 @@ public boolean getActive()
 {
 	return active;
 }
+public String execute(){
+UserDao.saveUser(this);
+	return "success";
+}
+
 }

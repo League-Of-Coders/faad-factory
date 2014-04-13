@@ -1,21 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
-"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
-<hibernate-mapping>
-    <class name="com.app.core.models.User" table="register" schema="FaadFactoryDB">
-        <id name="id" type="java.lang.Integer">
-            <column name="ID" precision="5" scale="0" />
-            <generator class="increment" />
-        </id>
-        <property name="firstname" type="java.lang.String">
-            <column name="FirstName" length="20" />
-        </property>
-        <property name="lastname" type="java.lang.String">
-            <column name="LastName" length="20" />
-        </property>
-        
-        <property name="salary" type="java.lang.Double">
-            <column name="SALARY" precision="7" scale="0" />
-        </property>
-    </class>
-</hibernate-mapping>
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC  
+ "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+ "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">  
+  
+ <hibernate-mapping>  
+  <class name="com.demo.mypackage.Employee" table="emp1000">  
+    <id name="id">  
+     <generator class="assigned"></generator>  
+    </id>  
+            
+    <property name="firstName"></property>  
+    <property name="lastName"></property>  
+            
+  </class>  
+            
+ </hibernate-mapping>  
