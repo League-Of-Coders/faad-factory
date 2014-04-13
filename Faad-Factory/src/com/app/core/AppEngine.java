@@ -7,6 +7,8 @@ import java.util.Properties;
 
 import javax.mail.*;
 import javax.mail.internet.*;
+
+import com.app.frameworks.widget.WidgetManager;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class AppEngine extends ActionSupport{
@@ -15,6 +17,7 @@ public class AppEngine extends ActionSupport{
 	
 	private static org.hibernate.Session hibernateSession;
 	private static org.hibernate.SessionFactory sessionFactory = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+	private static WidgetManager widgetManager = new WidgetManager();
 	
 		
 	/**
@@ -60,7 +63,7 @@ public class AppEngine extends ActionSupport{
 	/**
 	 * Email main method
 	 */
-	public boolean sendMail(String from,String to,String subject,String messageAttribute)
+	public static boolean sendMail(String from,String to,String subject,String messageAttribute)
     {
 
         String host = "localhost";

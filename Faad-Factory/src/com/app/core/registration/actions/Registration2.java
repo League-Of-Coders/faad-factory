@@ -22,8 +22,8 @@ public class Registration2 extends ActionSupport implements SessionAware{
 	private String userName,accountType,password,cPassword,otherAccountType;
 	private ArrayList<String> accountTypes =  null;
 	private Map<String,Object> session = null;
-	/*
-	 * Getter Declataions
+	/**
+	 * Recreating the array list of widgets, so that Registration3.java can use as a new request is sent
 	 */
 	public Registration2()
 	{
@@ -33,7 +33,9 @@ public class Registration2 extends ActionSupport implements SessionAware{
 		accountTypes.add("Producer");
 		accountTypes.add("Others");
 	}
-	
+	/*
+	 * Getter Declataions
+	 */	
 	public String getUserName()
 	{
 		return userName;

@@ -1,5 +1,6 @@
 package com.app.core.registration.actions;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -11,6 +12,7 @@ import org.apache.struts2.interceptor.ServletRequestAware;
 import javax.servlet.http.HttpServletRequest;
 
 import com.app.core.models.User;
+import com.app.frameworks.widget.Widget;
 import com.opensymphony.xwork2.ActionSupport;
 
 @SuppressWarnings("unused")
@@ -18,6 +20,7 @@ public class Registration3 extends ActionSupport implements ServletRequestAware{
 
 private static final long serialVersionUID = 1L;
 private int count = 0;
+
 private ArrayList<String> widgets = new ArrayList<String>();
 private HttpServletRequest request;
 private HttpSession session;

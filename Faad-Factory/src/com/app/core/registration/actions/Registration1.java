@@ -21,7 +21,7 @@ public class Registration1 extends ActionSupport implements SessionAware{
 	private ArrayList<String> accountTypes =  null;
 	private Map<String,Object> session = null;
 	/**
-	 * 
+	 * Modify List of account type to be made available to the user in the second step
 	 * @return
 	 */
 	public Registration1()

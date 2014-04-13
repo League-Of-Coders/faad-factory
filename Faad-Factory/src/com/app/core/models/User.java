@@ -2,15 +2,38 @@ package com.app.core.models;
 
 import java.util.ArrayList;
 
+import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
+
 import com.app.core.AppEngine;
+import com.app.frameworks.widget.Widget;
 
 
-
+@Entity
 public class User {
-private String firstName,lastName,eMail,accountType,userName,password,widgetsAsString;
+private String firstName;
+private String lastName;
+private String eMail;
+private String accountType;
+private String userName;
+private String password;
+private String widgetsAsString;
 private boolean active;
-private ArrayList<String> widgets;
-public String registrationTimeStampToken;
+@ManyToMany
+private ArrayList<Widget> widgets = new ArrayList<>();
+@Temporal(TemporalType.DATE)
+private java.util.Date joinDate;
+public java.util.Date getJoinDate() {
+	return joinDate;
+}
+
+public void setJoinDate(java.util.Date joinDate) {
+	this.joinDate = joinDate;
+}
+
 public void setFirstName(String firstName)
 {
 	this.firstName = firstName;
@@ -39,7 +62,7 @@ public void setAccountType(String accountType)
 {
 	this.accountType = accountType;
 }
-public void setWidgets(ArrayList<String> widgets)
+public void setWidgets(ArrayList<Widget> widgets)
 {
 	this.widgets=widgets;
 }
@@ -79,7 +102,7 @@ public String getAccountType()
 {
 	return accountType;
 }
-public ArrayList<String> getWidgets()
+public ArrayList<Widget> getWidgets()
 {
 	return widgets;
 }
@@ -100,4 +123,6 @@ public boolean getActive()
 {
 	return active;
 }
+
+
 }
