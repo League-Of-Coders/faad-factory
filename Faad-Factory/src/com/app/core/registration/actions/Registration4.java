@@ -102,7 +102,7 @@ private boolean sendMailConfirmationLink(DateTime dt) {
 					"\nTo activate your Film And Animation Developer Factory account now" +
 					"\nclick here: " + confirmationLink;
 	System.out.println("Registration4.java : Sending Mail Request");
-	boolean mailSent = new AppEngine().sendMail(from,to,subject,message);
+	boolean mailSent = AppEngine.getInstance().sendMail(from,to,subject,message);
 	if(mailSent)
 		return true;
 	else

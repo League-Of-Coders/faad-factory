@@ -6,55 +6,54 @@ import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 import com.app.core.models.User;
+import com.app.frameworks.user.UserAccountType;
+import com.opensymphony.xwork2.ActionSupport;
+@SuppressWarnings("serial")
 @Entity
-public class Widget {
-	@Id
-	private String id;
-	private String name;
-	private String version;
-	private String developer;
-	@Enumerated(EnumType.STRING)
-	private WidgetType type;
-	@ManyToMany(mappedBy="widgets")
-	private ArrayList<User> users = new ArrayList<>();
-	public String getId() {
+@Table(name="Widget")
+@Inheritance(strategy=InheritanceType.JOINED)
+public class Widget extends ActionSupport{
+	@Id @GeneratedValue
+	private int id;
+	private String widgetId;
+	@ManyToOne
+	@JoinColumn(name="userId")
+	private User user;
+	@ManyToOne
+	@JoinColumn(name="wrapperId")
+	private WidgetWrapper wrapper;
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
-	public String getName() {
-		return name;
+	public String getWidgetId() {
+		return widgetId;
 	}
-	public void setName(String name) {
-		this.name = name;
+	public void setWidgetId(String widgetId) {
+		this.widgetId = widgetId;
 	}
-	public String getVersion() {
-		return version;
+	public User getUser() {
+		return user;
 	}
-	public void setVersion(String version) {
-		this.version = version;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	public String getDeveloper() {
-		return developer;
+	public WidgetWrapper getWrapper() {
+		return wrapper;
 	}
-	public void setDeveloper(String developer) {
-		this.developer = developer;
-	}
-	public ArrayList<User> getUsers() {
-		return users;
-	}
-	public void setUsers(ArrayList<User> users) {
-		this.users = users;
-	}
-	public WidgetType getType() {
-		return type;
-	}
-	public void setType(WidgetType type) {
-		this.type = type;
+	public void setWrapper(WidgetWrapper wrapper) {
+		this.wrapper = wrapper;
 	}
 }

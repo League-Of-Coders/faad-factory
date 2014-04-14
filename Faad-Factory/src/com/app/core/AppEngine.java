@@ -8,23 +8,49 @@ import java.util.Properties;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import com.app.frameworks.widget.WidgetManager;
+import com.app.frameworks.user.UserAccountType;
+import com.app.frameworks.widget.AppWidgetManager;
 import com.opensymphony.xwork2.ActionSupport;
-
+/**
+ * App Engine is SingleTon
+ * @author 
+ *
+ */
 public class AppEngine extends ActionSupport{
 	
+	private static AppEngine appEngine= null;
 	private static final long serialVersionUID = 1L;
 	
-	private static org.hibernate.Session hibernateSession;
-	private static org.hibernate.SessionFactory sessionFactory = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
-	private static WidgetManager widgetManager = new WidgetManager();
+	private org.hibernate.Session hibernateSession;
+	private org.hibernate.SessionFactory sessionFactory;// = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+	private AppWidgetManager appWidgetManager = AppWidgetManager.getInstance();
 	
-		
+	private AppEngine(){
+		// avoids instantiation
+	}
+	/**
+	 * return the singleton instance of AppEngine
+	 * @return
+	 */
+	public static AppEngine getInstance()
+	{
+		if(appEngine==null)
+			appEngine = new AppEngine();
+		return appEngine;
+	}
+	/**
+	 * return the singleton instance of WidgetManager
+	 * @return
+	 */
+	public AppWidgetManager getAppWidgetManager()
+	{
+		return appWidgetManager;
+	}
 	/**
 	 * Create a new hibernate session. 
 	 * @return
 	 */
-	public static org.hibernate.Session getHibernateSession()
+	public org.hibernate.Session getHibernateSession()
 	{
 		hibernateSession = sessionFactory.openSession();
 		return hibernateSession;
@@ -35,7 +61,7 @@ public class AppEngine extends ActionSupport{
 	 * @param input
 	 * @return
 	 */
-	public static String[] getStringArrayFromCSVString(String input)
+	public String[] getStringArrayFromCSVString(String input)
 	{
 		String[] list = input.split(",");
 		return list;
@@ -43,7 +69,7 @@ public class AppEngine extends ActionSupport{
 	/**
 	 * convert widget list to Comma Separated Value String. Only used in registration as hibernate takes care of these conversions elsewhere 
 	 */
-	public static String getCSVStringFromArrayList(ArrayList<String> widgets)
+	public String getCSVStringFromArrayList(ArrayList<String> widgets)
 	{
 		String widgetsAsString = new String();
 		for(String widget:widgets)
@@ -63,7 +89,7 @@ public class AppEngine extends ActionSupport{
 	/**
 	 * Email main method
 	 */
-	public static boolean sendMail(String from,String to,String subject,String messageAttribute)
+	public boolean sendMail(String from,String to,String subject,String messageAttribute)
     {
 
         String host = "localhost";
@@ -111,4 +137,21 @@ public class AppEngine extends ActionSupport{
         	return false;
         }
     }
+	/**
+	 * Convert String to ProperCase
+	 */
+	public String changeToPoperCase(String s)
+	{
+		return s.substring(0, 1).toUpperCase() + s.substring(1).toLowerCase();
+	}
+	/**
+	 * returns an array list containing all UserAccountTypes as string and in proper case. Used in registration form
+	 */
+	public ArrayList<String> getUserAccountTypesAsStringArrayList()
+	{
+		ArrayList<String>accountTypes = new ArrayList<String>();
+		for(UserAccountType type : UserAccountType.values())
+			accountTypes.add(changeToPoperCase(type.toString()));
+		return accountTypes;
+	}
 }

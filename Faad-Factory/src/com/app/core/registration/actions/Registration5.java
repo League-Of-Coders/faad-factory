@@ -42,7 +42,7 @@ public class Registration5 extends ActionSupport implements ApplicationAware{
 		try{
 			user.setActive(true);
 			System.out.println(user.getFirstName() + " is now " + user.getActive() + "writing to database");
-			session = AppEngine.getHibernateSession();
+			session = AppEngine.getInstance().getHibernateSession();
 			session.beginTransaction();
 			session.persist(user);
 			session.getTransaction().commit();

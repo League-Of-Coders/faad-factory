@@ -5,8 +5,13 @@ import java.util.Map;
 
 import com.app.core.AppEngine;
 import com.app.core.models.User;
+import com.app.frameworks.user.UserAccountType;
+import com.app.frameworks.widget.Widget;
 
 import org.apache.struts2.interceptor.SessionAware;
+
+
+
 
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -27,11 +32,7 @@ public class Registration2 extends ActionSupport implements SessionAware{
 	 */
 	public Registration2()
 	{
-		accountTypes = new ArrayList<String>();
-		accountTypes.add("Actor");
-		accountTypes.add("Director");
-		accountTypes.add("Producer");
-		accountTypes.add("Others");
+		accountTypes = AppEngine.getInstance().getUserAccountTypesAsStringArrayList();
 	}
 	/*
 	 * Getter Declataions
@@ -99,15 +100,24 @@ public class Registration2 extends ActionSupport implements SessionAware{
 	@Override
 	public void validate()
 	{
+		
 		if(!password.equals(cPassword))
 		{
 			System.out.println("passwor :" + password + "\n" + "other pword : " + cPassword);
 			addFieldError("password",getText("registration.error.passwordmismatch"));
 		}
-		if(accountType.trim().equals("Other"))
+		/*
+		 * if other account type is not specified
+		 */
+		if(accountType.equals(AppEngine.getInstance().changeToPoperCase(UserAccountType.OTHERS.toString())) && otherAccountType.isEmpty())
 		{
-			setAccountType(getOtherAccountType());
+			addFieldError("accountType","Please specify an Account Type");
 		}
+		if(accountType.equals("-1") )
+		{
+			addFieldError("accountType","Please select an Account Type from the list");
+		}
+		
 		
 	}
 	/*
@@ -117,19 +127,29 @@ public class Registration2 extends ActionSupport implements SessionAware{
 	{
 		System.out.println("r2 running");
 		User user = (User)session.get("user");
-		user.setAccountType(accountType);
+		for(UserAccountType type:UserAccountType.values())
+			if(accountType.equals(AppEngine.getInstance().changeToPoperCase(type.toString())))
+			{
+				if(accountType.equals("Other"))
+					type.specifyUserAccountType(otherAccountType);
+				user.getAccountTypes().add(type);
+			}
 		user.setUserName(userName);
 		user.setPassword(password);
-		session.put("widgets",getWidgets());
+		session.put("widgets",getWidgets(user));
 		
 		return SUCCESS;
 	}
 /**
- * This method gets the appropriate widgets for the selected Account Type
+ * This method gets the appropriate widgets for the selected Account Type/Types(for complex user)
  * @return
  */
-	private String[] getWidgets() {
-		String widgets = null;
+	private ArrayList<Widget> getWidgets(User user) {
+		ArrayList<Widget> availableWidgets = AppEngine.getInstance().getAppWidgetManager().getFilteredFreeWidgets(user.getAccountTypes());
+		System.out.println("Widgets : " + availableWidgets);
+		return availableWidgets;
+		
+		/*String widgets = null;
 		String[] widgetList=null;
 		if(accountType.equals("Actor"))
 			widgets = getText("registration.widgets.actor");
@@ -139,8 +159,8 @@ public class Registration2 extends ActionSupport implements SessionAware{
 			widgets = getText("registration.widgets.producer");
 		else 
 			widgets = getText("registration.widgets.other");
-		widgetList = AppEngine.getStringArrayFromCSVString(widgets);	
-		return widgetList;
+		widgetList = AppEngine.getInstance().getStringArrayFromCSVString(widgets);	
+		return widgetList;*/
 	}
 
 	@Override
