@@ -10,6 +10,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -18,12 +19,14 @@ import com.app.frameworks.user.UserAccountType;
 @Entity
 @Table(name="Widget_Yard")
 public class WidgetWrapper {
-	@Id @GeneratedValue
-	private int id;
-	private String name;
+	@Id 
 	private String widgetId;
+	
+	private String name;
 	private String version;
 	private String developer;
+	@Lob
+	private String widgetDescription;
 	@Enumerated(EnumType.STRING)
 	private WidgetType type;
 	@OneToMany(cascade=CascadeType.ALL)
@@ -37,7 +40,7 @@ public class WidgetWrapper {
 		this.setWidgetId(widget.getText("widget.id"));
 		this.setDeveloper(widget.getText("widget.developer"));
 		this.setVersion(widget.getText("widget.version"));
-		
+		this.setWidgetDescription(widget.getText("widget.description"));
 		String widgetType = widget.getText("widget.type");
 		Integer widgetPrice = Integer.parseInt(widget.getText("widget.price"));
 		this.setType(WidgetType.getTypeFromString(widgetType,widgetPrice));
@@ -52,12 +55,7 @@ public class WidgetWrapper {
 	/*
 	 * Getters Setters
 	 */
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+	
 	public String getName() {
 		return name;
 	}
@@ -100,5 +98,11 @@ public class WidgetWrapper {
 	}
 	public void setWidget(Widget widget) {
 		this.widget = widget;
+	}
+	public String getWidgetDescription() {
+		return widgetDescription;
+	}
+	public void setWidgetDescription(String widgetDescription) {
+		this.widgetDescription = widgetDescription;
 	}
 }

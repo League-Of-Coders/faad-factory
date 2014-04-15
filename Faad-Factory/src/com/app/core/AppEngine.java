@@ -67,7 +67,7 @@ public class AppEngine extends ActionSupport{
 		return list;
 	}
 	/**
-	 * convert widget list to Comma Separated Value String. Only used in registration as hibernate takes care of these conversions elsewhere 
+	 * convert widget list to Comma Separated Value String.  
 	 */
 	public String getCSVStringFromArrayList(ArrayList<String> widgets)
 	{

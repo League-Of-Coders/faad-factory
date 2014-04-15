@@ -18,7 +18,7 @@ public class AppWidgetManager extends ActionSupport{
 	
 	private AppWidgetManager()
 	{
-		/// avoids intantiation from outside
+		/// avoids instantiation from outside
 	}
 	public static AppWidgetManager getInstance()
 	{
@@ -39,18 +39,8 @@ public class AppWidgetManager extends ActionSupport{
 	}
 		
 	/**
-	 * 
-	 * @param id
-	 * @return
-	 */
-	
-	public WidgetWrapper getWidgetWrapperById(String id)
-	{
-		
-	}
-	/**
 	 * Handles complex and simple user types both
-	 * This method widget wrappers of all free widgets for the specified user types. The widget wrapper can then 
+	 * This method gets widget wrappers of all free widgets for the specified user types. The widget wrapper can then 
 	 * be user to display info like widget name, description,reviews etc. for eg -> this info can be displayed during registration
 	 * @param userType
 	 * @return
@@ -58,22 +48,21 @@ public class AppWidgetManager extends ActionSupport{
 	public ArrayList<WidgetWrapper> getFilteredFreeWidgets(ArrayList<UserAccountType> userTypes)
 	{
 		ArrayList<WidgetWrapper> filteredWidgetWrappers = new ArrayList<>();
-		Widget widget;
 		for(UserAccountType userType: userTypes)
 		{
-		for(Map.Entry<String,Widget> registeredWidget: registeredWidgets.entrySet())
+		for(WidgetWrapper registeredWidgetWrapper: registeredWidgetWrappers)
 		{
-			widget = registeredWidget.getValue();
-			if(widget.getType()== WidgetType.FREE)
+			
+			if(registeredWidgetWrapper.getType()== WidgetType.FREE)
 			{
-				for(UserAccountType widgetUserType :widget.getAssociatedUserAccountTypes())
+				for(UserAccountType widgetUserType :registeredWidgetWrapper.getAssociatedUserAccountTypes())
 					if(widgetUserType==userType)
-						if(!filteredWidgets.contains(widget))
-							filteredWidgets.add(widget);
+						if(!filteredWidgetWrappers.contains(registeredWidgetWrapper))
+							filteredWidgetWrappers.add(registeredWidgetWrapper);
 			}
 		}
 		}
-		return filteredWidgets;
+		return filteredWidgetWrappers;
 	}
 	
 }

@@ -18,6 +18,8 @@
 	<!-- model class/xml file -->
 	<!--mapping resource="com/app/core/models/User.hbm.xml" / -->
 	<mapping class="com.app.core.models.User" />
+	<mapping class="com.app.frameworks.widget.Widget" />
+	<mapping class="com.app.core.widgets.Portfolio"/>
 </session-factory>
 
 </hibernate-configuration>
