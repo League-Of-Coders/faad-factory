@@ -6,9 +6,11 @@ import java.util.Map;
 import com.app.core.AppEngine;
 import com.app.core.models.User;
 import com.app.frameworks.user.UserAccountType;
+import com.app.frameworks.widget.AppWidgetManager;
 import com.app.frameworks.widget.Widget;
 
 import org.apache.struts2.interceptor.SessionAware;
+
 
 
 
@@ -113,6 +115,9 @@ public class Registration2 extends ActionSupport implements SessionAware{
 		{
 			addFieldError("accountType","Please specify an Account Type");
 		}
+		/*
+		 * if no option is selected
+		 */
 		if(accountType.equals("-1") )
 		{
 			addFieldError("accountType","Please select an Account Type from the list");
@@ -120,8 +125,13 @@ public class Registration2 extends ActionSupport implements SessionAware{
 		
 		
 	}
+	/**
+	 * This method gets user instance from session, puts username,password and accountType info into it
+	 * Prepares a list of free widget wrappers based on users choice of account type
+	 * 
+	 */
 	/*
-	 * Methods for each step i.e r2 for step 2 
+	 * TODO Modify for including multiple user account types as input 
 	 */
 	public String r2()
 	{
@@ -136,7 +146,7 @@ public class Registration2 extends ActionSupport implements SessionAware{
 			}
 		user.setUserName(userName);
 		user.setPassword(password);
-		session.put("widgets",getWidgets(user));
+		session.put("widgetWrappers",AppWidgetManager.getInstance().getFilteredFreeWidgets(user.getAccountTypes()));
 		
 		return SUCCESS;
 	}
@@ -144,12 +154,12 @@ public class Registration2 extends ActionSupport implements SessionAware{
  * This method gets the appropriate widgets for the selected Account Type/Types(for complex user)
  * @return
  */
-	private ArrayList<Widget> getWidgets(User user) {
+	/*private ArrayList<Widget> getWidgets(User user) {
 		ArrayList<Widget> availableWidgets = AppEngine.getInstance().getAppWidgetManager().getFilteredFreeWidgets(user.getAccountTypes());
 		System.out.println("Widgets : " + availableWidgets);
 		return availableWidgets;
 		
-		/*String widgets = null;
+		String widgets = null;
 		String[] widgetList=null;
 		if(accountType.equals("Actor"))
 			widgets = getText("registration.widgets.actor");
@@ -160,9 +170,9 @@ public class Registration2 extends ActionSupport implements SessionAware{
 		else 
 			widgets = getText("registration.widgets.other");
 		widgetList = AppEngine.getInstance().getStringArrayFromCSVString(widgets);	
-		return widgetList;*/
+		return widgetList;
 	}
-
+*/
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		session = arg0;

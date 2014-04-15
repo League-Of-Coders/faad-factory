@@ -1,9 +1,10 @@
 package com.app.frameworks.widget;
 
 import com.app.core.AppEngine;
+import com.app.core.widgets.Gallery;
 import com.app.core.widgets.Portfolio;
 /**
- * WidgetFactory is SingleTon
+ * WidgetFactory is SingleTon. It is instantiated when the AppWidgetManager is instantiated. see its constructor
  * @author MAYANK
  *
  */
@@ -16,6 +17,7 @@ public class AppWidgetFactory {
 	private AppWidgetFactory()
 	{
 		manufactureWidget(new Portfolio());
+		manufactureWidget(new Gallery());
 	}
 	/*
 	 * This method extracts info from the widget's properties file, creates a wrapper and then sends it to AppWidgetManager for registration
@@ -24,6 +26,7 @@ public class AppWidgetFactory {
 	private void manufactureWidget(Widget widget) {
 	WidgetWrapper  widgetWrapper = new WidgetWrapper().createWrapper(widget);
 	AppEngine.getInstance().getAppWidgetManager().registerWidgetWrapper(widgetWrapper);
+	System.out.println("Widget Factory : widget manufactured : " + widget.getText("widget.name"));
 	
 }
 	/**

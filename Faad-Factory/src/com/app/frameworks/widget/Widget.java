@@ -50,4 +50,5 @@ public class Widget extends ActionSupport{
 	public void setWrapper(WidgetWrapper wrapper) {
 		this.wrapper = wrapper;
 	}
+
 }

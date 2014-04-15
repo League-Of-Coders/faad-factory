@@ -21,12 +21,12 @@ import com.app.frameworks.user.UserAccountType;
 public class WidgetWrapper {
 	@Id 
 	private String widgetId;
-	
+	private Widget sampleWidget; // saved as blob
 	private String name;
 	private String version;
 	private String developer;
 	@Lob
-	private String widgetDescription;
+	private String description;
 	@Enumerated(EnumType.STRING)
 	private WidgetType type;
 	@OneToMany(cascade=CascadeType.ALL)
@@ -35,13 +35,15 @@ public class WidgetWrapper {
 	private List<UserAccountType> associatedUserAccountTypes = new ArrayList<>();
 	public WidgetWrapper createWrapper(Widget widget)
 	{
-		this.widget = widget;
+		this.widget = widget; //for table
+		this.sampleWidget = widget; // for assigning to user
 		this.setName(widget.getText("widget.name"));
 		this.setWidgetId(widget.getText("widget.id"));
 		this.setDeveloper(widget.getText("widget.developer"));
 		this.setVersion(widget.getText("widget.version"));
-		this.setWidgetDescription(widget.getText("widget.description"));
+		this.setDescription(widget.getText("widget.description"));
 		String widgetType = widget.getText("widget.type");
+		System.out.println(widget.getText("widget.name"));	
 		Integer widgetPrice = Integer.parseInt(widget.getText("widget.price"));
 		this.setType(WidgetType.getTypeFromString(widgetType,widgetPrice));
 		String[] assType = AppEngine.getInstance().getStringArrayFromCSVString(widget.getText("widget.associated_user_types"));
@@ -99,10 +101,18 @@ public class WidgetWrapper {
 	public void setWidget(Widget widget) {
 		this.widget = widget;
 	}
-	public String getWidgetDescription() {
-		return widgetDescription;
+	public String getDescription() {
+		return description;
 	}
-	public void setWidgetDescription(String widgetDescription) {
-		this.widgetDescription = widgetDescription;
+	public void setDescription(String widgetDescription) {
+		this.description = widgetDescription;
+	}
+
+	public Widget getSampleObject() {
+		return sampleWidget;
+	}
+
+	public void setSampleObject(Widget sampleObject) {
+		this.sampleWidget = sampleObject;
 	}
 }

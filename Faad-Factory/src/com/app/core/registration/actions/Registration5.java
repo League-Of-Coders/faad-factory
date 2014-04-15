@@ -46,6 +46,7 @@ public class Registration5 extends ActionSupport implements ApplicationAware{
 			session.beginTransaction();
 			session.persist(user);
 			session.getTransaction().commit();
+			application.remove(user);
 			return SUCCESS;
 		}catch(Exception ex)
 		{
@@ -54,6 +55,7 @@ public class Registration5 extends ActionSupport implements ApplicationAware{
 		}
 		finally {
 			session.close();
+			
 		}
 	}
 	@Override

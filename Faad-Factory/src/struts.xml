@@ -20,7 +20,7 @@
 </action>
 
 <action name="register_4" class="com.app.core.registration.actions.Registration4" method="r4">
-<result name="success">/home.jsp</result>
+<result name="success">/Faad-Home.jsp</result>
 <result name="input">registration_4.jsp</result>
 <result name="error">errorPages/mailfail.html</result>
 </action>
