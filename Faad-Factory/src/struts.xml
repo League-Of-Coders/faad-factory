@@ -29,6 +29,13 @@
 <result name="success">/profile.jsp</result>
 <result name="error">errorPages/mailauthfail.html</result>
 </action>
+</package>
+<package name="login" namespace="/core/login" extends="struts-default">
+<action name="log_1" class="com.app.core.login.actions.Login1" method="l1">
+<result name="success">loginsuccess.jsp</result>
+<result name="input">login_1.jsp</result>
+</action>
+
 
 </package>
 </struts>
