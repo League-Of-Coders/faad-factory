@@ -25,7 +25,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class Widget extends ActionSupport{
 	@Id @GeneratedValue
 	private int id;
-	private String widgetId;
+	
 	@ManyToOne
 	@JoinColumn(name="userId")
 	private User user;
@@ -37,12 +37,6 @@ public class Widget extends ActionSupport{
 	}
 	public void setId(int id) {
 		this.id = id;
-	}
-	public String getWidgetId() {
-		return widgetId;
-	}
-	public void setWidgetId(String widgetId) {
-		this.widgetId = widgetId;
 	}
 	public User getUser() {
 		return user;

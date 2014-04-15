@@ -9,15 +9,13 @@ import com.app.core.AppEngine;
 import com.app.frameworks.user.UserAccountType;
 import com.opensymphony.xwork2.ActionSupport;
 /*
- * This is a SingleTon class. use AppEngine.getWidgetManager()
+ * This is a SingleTon class. use AppEngine.getWidgetManager() or AppWidgetManager.getInstance()
  */
 public class AppWidgetManager extends ActionSupport{
 	private static AppWidgetManager appWidgetManager=null;
 	private static final long serialVersionUID = 1L;
-	private List<WidgetWrapper> registeredWidgets;
-	/**
-	 * Only called by AppEngine.	
-	 */
+	private List<WidgetWrapper> registeredWidgetWrappers;
+	
 	private AppWidgetManager()
 	{
 		/// avoids intantiation from outside
@@ -34,39 +32,34 @@ public class AppWidgetManager extends ActionSupport{
 	 * @param widgetId
 	 * @param widget
 	 */
-	public void registerWidget(WidgetWrapper wrapper)
+	public void registerWidgetWrapper(WidgetWrapper wrapper)
 	{
-		if(!registeredWidgets.contains(wrapper))
-			registeredWidgets.add(wrapper);
+		if(!registeredWidgetWrappers.contains(wrapper))
+			registeredWidgetWrappers.add(wrapper);
 	}
-	/**
-	 * 
-	 * @return
-	 */
-	
-	public Map<String, Widget> getRegisteredWidgets() {
-		return registeredWidgets;
-	}
+		
 	/**
 	 * 
 	 * @param id
 	 * @return
 	 */
 	
-	public WidgetWrapper getWidgetById(String id)
+	public WidgetWrapper getWidgetWrapperById(String id)
 	{
-		for()
+		
 	}
 	/**
 	 * Handles complex and simple user types both
+	 * This method widget wrappers of all free widgets for the specified user types. The widget wrapper can then 
+	 * be user to display info like widget name, description,reviews etc. for eg -> this info can be displayed during registration
 	 * @param userType
 	 * @return
 	 */
-	public ArrayList<Widget> getFilteredFreeWidgets(ArrayList<UserAccountType> complexUserType)
+	public ArrayList<WidgetWrapper> getFilteredFreeWidgets(ArrayList<UserAccountType> userTypes)
 	{
-		ArrayList<Widget> filteredWidgets = new ArrayList<>();
+		ArrayList<WidgetWrapper> filteredWidgetWrappers = new ArrayList<>();
 		Widget widget;
-		for(UserAccountType userType: complexUserType)
+		for(UserAccountType userType: userTypes)
 		{
 		for(Map.Entry<String,Widget> registeredWidget: registeredWidgets.entrySet())
 		{

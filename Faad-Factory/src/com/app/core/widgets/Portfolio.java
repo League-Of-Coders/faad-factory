@@ -15,14 +15,16 @@ public class Portfolio extends Widget{
 	 */
 	static{
 		//new WidgetWrapper().createPacket(new Portfolio());
-		WidgetWrapper wrapper = new WidgetWrapper();
+		//WidgetWrapper wrapper = new WidgetWrapper();
 		
 	}
 	private String aboutMe ;
 	
 	public Portfolio()
 	{
-		super.setWidgetId(getText("widget.portfolio.packet.widgetId"));
+		/*
+		 * Think if code should be added to check/register it to appWidgetManager every time an instance is created. Or use a static block Or leave the task of registration to AppWidgetFactory
+		 */
 	}
 	public String getAboutMe() {
 		return aboutMe;
