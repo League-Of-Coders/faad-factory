@@ -29,7 +29,7 @@ public class User {
 	private String firstName;
 	private String lastName;
 	private String eMail;
-	private ArrayList<UserAccountType> accountTypes;
+	private ArrayList<UserAccountType> accountTypes = new ArrayList<>();
 	private String userName;
 	private String password;
 	private boolean active;

@@ -22,11 +22,12 @@ public class AppEngine extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private org.hibernate.Session hibernateSession;
-	private org.hibernate.SessionFactory sessionFactory;// = new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
-	private AppWidgetManager appWidgetManager = AppWidgetManager.getInstance();
+	private org.hibernate.SessionFactory sessionFactory= new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
+	private AppWidgetManager appWidgetManager;// = AppWidgetManager.getInstance();
 	
 	private AppEngine(){
 		// avoids instantiation
+		appWidgetManager = AppWidgetManager.getInstance();
 	}
 	/**
 	 * return the singleton instance of AppEngine
@@ -84,7 +85,13 @@ public class AppEngine extends ActionSupport{
 		 }
 		return widgetsAsString;
 	}
-	
+	public ArrayList<String> getArrayListFromStringArray(String[] stringArray )
+	{
+		ArrayList<String> arrayList = new ArrayList<>();
+		for(String string : stringArray)
+			arrayList.add(string);
+		return arrayList;
+	}
 	
 	/**
 	 * Email main method

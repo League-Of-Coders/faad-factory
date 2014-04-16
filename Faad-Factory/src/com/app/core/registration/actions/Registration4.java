@@ -79,7 +79,10 @@ public String r4()
 	DateTime token = new DateTime();
 	putUserInApplicationScope(token);
 	if(sendMailConfirmationLink(token))
+	{
+		addActionMessage(getText("registration.mail.check_mail_message"));
 		return SUCCESS;
+	}
 	else
 		return "error";
 }

@@ -22,16 +22,17 @@ import com.opensymphony.xwork2.ActionSupport;
 @Entity
 @Table(name="Widget")
 @Inheritance(strategy=InheritanceType.JOINED)
-public class Widget extends ActionSupport{
+public class Widget extends ActionSupport implements Cloneable{
 	@Id @GeneratedValue
 	private int id;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="userId")
 	private User user;
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="wrapperId")
 	private WidgetWrapper wrapper;
+	
 	public int getId() {
 		return id;
 	}
@@ -50,4 +51,5 @@ public class Widget extends ActionSupport{
 	public void setWrapper(WidgetWrapper wrapper) {
 		this.wrapper = wrapper;
 	}
+
 }

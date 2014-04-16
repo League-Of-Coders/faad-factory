@@ -14,12 +14,15 @@
 	<!-- echo all sql to stdout -->
 	<property name ="show_sql">true</property>
 	<!-- drop and recreate database schema on startup -->
-	<property name="hbm2ddl.auto">create</property>
+	<property name="hbm2ddl.auto">update</property>
 	<!-- model class/xml file -->
-	<!--mapping resource="com/app/core/models/User.hbm.xml" / -->
+	
 	<mapping class="com.app.core.models.User" />
 	<mapping class="com.app.frameworks.widget.Widget" />
+	<mapping class="com.app.frameworks.widget.WidgetWrapper" />
+	<!-- Widgets mapping -->
 	<mapping class="com.app.core.widgets.Portfolio"/>
+	<mapping class="com.app.core.widgets.Gallery"/>
 </session-factory>
 
 </hibernate-configuration>
