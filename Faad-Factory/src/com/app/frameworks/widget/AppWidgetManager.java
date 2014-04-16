@@ -8,6 +8,7 @@ import java.util.Map;
 
 import com.app.core.AppEngine;
 import com.app.core.models.User;
+import com.app.core.widgets.Portfolio;
 import com.app.frameworks.user.UserAccountType;
 import com.opensymphony.xwork2.ActionSupport;
 /*
@@ -88,7 +89,13 @@ public class AppWidgetManager extends ActionSupport{
 				System.out.println("registeredWidgetWrapper : " + registeredWidgetWrapper.getName());
 				if(chosenWidgetWrapper.trim().equals(registeredWidgetWrapper.getWidgetId()))
 				{
-					user.getWidgets().add(registeredWidgetWrapper.getSampleObject());
+					try {
+						user.getWidgets().add((Widget) registeredWidgetWrapper.getSampleObject().clone());
+					} catch (CloneNotSupportedException e) {
+						System.out.println("Failed to clone widget for user");
+						e.printStackTrace();
+					}
+					//registeredWidgetWrapper.getWidgets().add(user.getWidgets().get(user.getWidgets().size()-1));
 					System.out.println("Found widget to be added: " + chosenWidgetWrapper);
 				}
 				else

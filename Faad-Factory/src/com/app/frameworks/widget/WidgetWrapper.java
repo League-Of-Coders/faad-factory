@@ -1,5 +1,6 @@
 package com.app.frameworks.widget;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,7 @@ import com.app.core.AppEngine;
 import com.app.frameworks.user.UserAccountType;
 @Entity
 @Table(name="Widget_Yard")
-public class WidgetWrapper {
+public class WidgetWrapper implements Serializable{
 	@Id 
 	private String widgetId;
 	private Widget sampleWidget; // saved as blob
@@ -29,14 +30,16 @@ public class WidgetWrapper {
 	private String description;
 	@Enumerated(EnumType.STRING)
 	private WidgetType type;
-	@OneToMany(cascade=CascadeType.ALL)
-	private Widget widget;
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="wrapper")
+	private List<Widget> widgets = new ArrayList<>();
 
-	private List<UserAccountType> associatedUserAccountTypes = new ArrayList<>();
+	private ArrayList<UserAccountType> associatedUserAccountTypes = new ArrayList<>();
 	public WidgetWrapper createWrapper(Widget widget)
 	{
-		this.widget = widget; //for table
+		this.widgets.add(widget); //for table
 		this.sampleWidget = widget; // for assigning to user
+		// TODO Very Important step. When sample widget is cloned, to assign it to user, it already has the wrapper attached
+		sampleWidget.setWrapper(this);
 		this.setName(widget.getText("widget.name"));
 		this.setWidgetId(widget.getText("widget.id"));
 		this.setDeveloper(widget.getText("widget.developer"));
@@ -93,14 +96,17 @@ public class WidgetWrapper {
 	}
 	public void setAssociatedUserAccountTypes(
 			List<UserAccountType> associatedUserAccountTypes) {
-		this.associatedUserAccountTypes = associatedUserAccountTypes;
+		this.associatedUserAccountTypes = (ArrayList<UserAccountType>) associatedUserAccountTypes;
 	}
-	public Widget getWidget() {
-		return widget;
+	
+	public List<Widget> getWidgets() {
+		return widgets;
 	}
-	public void setWidget(Widget widget) {
-		this.widget = widget;
+
+	public void setWidgets(List<Widget> widgets) {
+		this.widgets = widgets;
 	}
+
 	public String getDescription() {
 		return description;
 	}
