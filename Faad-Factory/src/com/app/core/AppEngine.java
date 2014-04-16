@@ -22,7 +22,7 @@ public class AppEngine extends ActionSupport{
 	private static final long serialVersionUID = 1L;
 	
 	private org.hibernate.Session hibernateSession;
-	private org.hibernate.SessionFactory sessionFactory; //= new org.hibernate.cfg.AnnotationConfiguration().configure().buildSessionFactory();
+	private org.hibernate.SessionFactory sessionFactory= new org.hibernate.cfg.Configuration().configure().buildSessionFactory();
 	private AppWidgetManager appWidgetManager;// = AppWidgetManager.getInstance();
 	
 	private AppEngine(){
