@@ -53,8 +53,10 @@ public class Registration5 extends ActionSupport implements ApplicationAware,Ses
 			
 			try {
 				tx = session.beginTransaction();
-				// TODO not working session.persist(user);
+				// TODO not working 
+				session.persist(user);
 				//session.flush();
+				System.out.println("User persisting complete");
 				tx.commit();
 			
 			}catch(Exception ex)
