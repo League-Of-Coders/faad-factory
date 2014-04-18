@@ -1,6 +1,7 @@
 package com.app.core.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -11,24 +12,52 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.Id;
 
-import com.app.core.AppEngine;
-import com.app.core.models.UserDao;
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 
+import com.app.core.AppEngine;
+import com.app.frameworks.user.UserAccountType;
+import com.app.frameworks.widget.Widget;
 
 
 
 
 @Entity
-@Table(name= "")
-public class User 
-{
-	@Id
-	
+@Table(name="Users")
+public class User {
+	@Id @GeneratedValue
 	private int id;
-private String firstName,lastName,eMail,accountType,userName,password,widgetsAsString;
-private boolean active;
-private ArrayList<String> widgets;
-public String registrationTimeStampToken;
+	private String firstName;
+	private String lastName;
+	private String eMail;
+	private ArrayList<UserAccountType> accountTypes = new ArrayList<>();
+	private String userName;
+	private String password;
+	private boolean active;
+	@OneToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER,mappedBy="user")
+	private List<Widget> widgets = new ArrayList<>();
+	@Temporal(TemporalType.DATE)
+	private java.util.Date joinDate;
+	
+	public java.util.Date getJoinDate() {
+	return joinDate;
+}
+
+public void setJoinDate(java.util.Date joinDate) {
+	this.joinDate = joinDate;
+}
+
+
 public int getId() 
 {
 	return id;
@@ -61,22 +90,21 @@ public void setPassword(String password)
 	this.password = password;
 }
 
-public void setAccountType(String accountType)
-{
-	this.accountType = accountType;
-}
-public void setWidgets(ArrayList<String> widgets)
+
+public void setWidgets(List<Widget> widgets)
 {
 	this.widgets=widgets;
-}
-public void setWidgetsAsString(String widgetsAsString)
-{
-	this.widgetsAsString = widgetsAsString;
 }
 public void setActive(boolean active)
 {
 	this.active= active;
 }
+
+
+public void setAccountTypes(ArrayList<UserAccountType> accountTypes) {
+	this.accountTypes = accountTypes;
+}
+
 /*
  * Getters
  */
@@ -101,34 +129,20 @@ public String getPassword()
 {
 	return password;
 }
-public String getAccountType()
-{
-	return accountType;
-}
-public ArrayList<String> getWidgets()
+
+public List<Widget> getWidgets()
 {
 	return widgets;
-}
-public String getWidgetsAsString()
-{
-	String widgetsAsString;
-	if(this.widgetsAsString==null)
-	{
-		widgetsAsString = AppEngine.getCSVStringFromArrayList(widgets);
-		return widgetsAsString;
-	}
-	else
-	{
-		return this.widgetsAsString;
-	}
 }
 public boolean getActive()
 {
 	return active;
 }
-public String execute(){
-UserDao.saveUser(this);
-	return "success";
+public ArrayList<UserAccountType> getAccountTypes() {
+	return accountTypes;
 }
+
+
+
 
 }

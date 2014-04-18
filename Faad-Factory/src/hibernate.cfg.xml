@@ -1,23 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 
 
+<hibernate-configuration>
 
+<session-factory>
+	<property name="connection.username">root</property>
+	<property name="connection.password">root123</property>
+	<property name="connection.url">jdbc:mysql://localhost/FaadFactoryDb</property>
+	<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+	<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+	<!-- echo all sql to stdout -->
+	<property name ="show_sql">true</property>
+	<!-- drop and recreate database schema on startup -->
+	<property name="hbm2ddl.auto">update</property>
+	<!-- model class/xml file -->
+	
+	<mapping class="com.app.core.models.User" />
+	<mapping class="com.app.frameworks.widget.Widget" />
+	<mapping class="com.app.frameworks.widget.WidgetWrapper" />
+	<!-- Widgets mapping -->
+	<mapping class="com.app.core.widgets.Portfolio"/>
+	<mapping class="com.app.core.widgets.Gallery"/>
+</session-factory>
 
-<!DOCTYPE hibernate-configuration PUBLIC  
-          "-//Hibernate/Hibernate Configuration DTD 3.0//EN"  
-          "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">  
-  
-<hibernate-configuration>  
-  
-    <session-factory>  
-        <property name="hbm2ddl.auto">update</property>  
-        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
-        <property name="connection.driver_class">com.mysql.jdbc.Driver</property> 
-        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>  
-        <property name="connection.url">jdbc:mysql://localhost:3306/FaadFactoryDB</property>  
-        <property name="connection.username">root</property>  
-        <property name="connection.password">root</property>  
-         
-    <mapping class="com.app.core.models.User"/>   
-    </session-factory>  
-  
-</hibernate-configuration>  
+</hibernate-configuration>

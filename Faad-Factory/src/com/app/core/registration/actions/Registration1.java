@@ -5,10 +5,12 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.app.core.AppEngine;
 import com.app.core.models.User;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.validator.annotations.*;
 import com.app.core.models.User;
+import com.app.frameworks.user.UserAccountType;
 
 
 @Validation()
@@ -21,16 +23,14 @@ public class Registration1 extends ActionSupport implements SessionAware{
 	private ArrayList<String> accountTypes =  null;
 	private Map<String,Object> session = null;
 	/**
-	 * 
+	 * Modify List of account type to be made available to the user in the second step
 	 * @return
 	 */
 	public Registration1()
 	{
-		accountTypes = new ArrayList<String>();
-		accountTypes.add("Actor");
-		accountTypes.add("Director");
-		accountTypes.add("Producer");
-		accountTypes.add("Others");
+		
+		accountTypes = AppEngine.getInstance().getUserAccountTypesAsStringArrayList();
+		
 	}
 	/*
 	 * Getter Declataions

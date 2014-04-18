@@ -79,7 +79,10 @@ public String r4()
 	DateTime token = new DateTime();
 	putUserInApplicationScope(token);
 	if(sendMailConfirmationLink(token))
+	{
+		addActionMessage(getText("registration.mail.check_mail_message"));
 		return SUCCESS;
+	}
 	else
 		return "error";
 }
@@ -97,11 +100,12 @@ private boolean sendMailConfirmationLink(DateTime dt) {
 	String to = user.getEMail();
 	String subject = getText("registration.mail.subject");
 	String confirmationLink = getText("app.contextRoot") + "/core/registration/register_5?id="+ id;
+	System.out.println("CONFIRMATION LINK: " + confirmationLink);
 	String message = "Hi " + user.getFirstName() +
 					"\nTo activate your Film And Animation Developer Factory account now" +
 					"\nclick here: " + confirmationLink;
 	System.out.println("Registration4.java : Sending Mail Request");
-	boolean mailSent = new AppEngine().sendMail(from,to,subject,message);
+	boolean mailSent = AppEngine.getInstance().sendMail(from,to,subject,message);
 	if(mailSent)
 		return true;
 	else

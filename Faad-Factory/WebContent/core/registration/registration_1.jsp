@@ -5,9 +5,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Faad-Factory</title>
+<link href="styles/registration_layout.css" rel="stylesheet" type="text/css">
 </head>
 <body>
+<div id="formWrapper">
 <div class="form">
 <s:form action="register_1" method="post">
 <s:textfield name="firstName" label="First Name "/>
@@ -15,6 +17,7 @@
 <s:textfield name="eMail" label="E-Mail "/>
 <s:submit value="Next"/>
 </s:form>
+</div>
 </div>
 </body>
 </html>
