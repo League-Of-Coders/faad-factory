@@ -1,8 +1,10 @@
 package com.app.core.login.actions;
 
 
+import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.struts2.interceptor.ApplicationAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.app.core.models.User;
@@ -12,7 +14,7 @@ import com.opensymphony.xwork2.validator.annotations.*;
 
 
 
-public class Login1 extends ActionSupport implements SessionAware{
+public class Login1 extends ActionSupport implements SessionAware,ApplicationAware{
 	/*
 	 * Variable Declarations
 	 */
@@ -20,6 +22,7 @@ public class Login1 extends ActionSupport implements SessionAware{
 	private String userName,password;
 	
 	private Map<String,Object> session = null;
+	private Map<String,Object> application = null;
 	/**
 	 * 
 	 * @return
@@ -60,17 +63,25 @@ public class Login1 extends ActionSupport implements SessionAware{
 	public String l1()
 	{
 		System.out.println("l1 running");
-		User user = new User();
-		user.setUserName(userName);
-		user.setPassword(password);
-		
-		session.put("user",user);
-		//run validations
-		return SUCCESS;
-	}
+		//TODO add hibernate code
+		ArrayList<User> users = (ArrayList<User>)application.get("users");
+		for(User user:users)
+			if(user.getUserName().equals(userName))
+			{
+				session.put("user", user);
+				return SUCCESS;
+			}
+		return ERROR;
+}
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		session = arg0;
+		
+	}
+
+	@Override
+	public void setApplication(Map<String, Object> arg0) {
+		application = arg0;
 		
 	}
 	

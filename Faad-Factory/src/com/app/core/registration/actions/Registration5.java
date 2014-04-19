@@ -1,5 +1,6 @@
 package com.app.core.registration.actions;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -45,13 +46,13 @@ public class Registration5 extends ActionSupport implements ApplicationAware,Ses
 		/*
 		 * create a record in database, redirect to profile
 		 */
-		Transaction tx = null ;
+		
 			user.setActive(true);
 			System.out.println(user.getFirstName() + " is now " + user.getActive() + "\nwriting to database");
 			session = AppEngine.getInstance().getHibernateSession();
 			System.out.println(user.getUserName() + " has widgets " + user.getWidgets());
-			
-			try {
+			//Transaction tx = null ;	
+			/*try {
 				tx = session.beginTransaction();
 				// TODO not working 
 				session.persist(user);
@@ -63,12 +64,26 @@ public class Registration5 extends ActionSupport implements ApplicationAware,Ses
 			{
 				tx.rollback();
 				throw ex;
-			}finally {
-				session.close();
+			}finally {*/
+				//session.close();
+				
+				//TODO add hibernate session here
 				faadSession.put("user",user);
 				application.remove(user);
+				try
+				{
+				ArrayList<User> users = (ArrayList<User>)application.get("users");
+				users.add(user);
+				application.put("users", users);
+				}catch(Exception ex)
+				{
+					// null pointer i.e users does not exist in application scope
+					ArrayList<User> users = new ArrayList<>();
+					users.add(user);
+					application.put("users", users);
+				}
 						
-			}
+			//}
 			return SUCCESS;
 			/*user=null;
 			session = AppEngine.getInstance().getHibernateSession();

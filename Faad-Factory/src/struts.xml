@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
-
+                             <!-- Registration -->
 <package name="registration" namespace="/core/registration" extends="struts-default">
 
 <action name="register_1" class="com.app.core.registration.actions.Registration1" method="r1">
@@ -29,13 +29,30 @@
 <result name="success">/profile.jsp</result>
 <result name="error">errorPages/mailauthfail.html</result>
 </action>
+
 </package>
+
+                            <!-- Login Package -->
+
 <package name="login" namespace="/core/login" extends="struts-default">
+
 <action name="log_1" class="com.app.core.login.actions.Login1" method="l1">
-<result name="success">loginsuccess.jsp</result>
+<result name="success">/core/profiles/view</result>
 <result name="input">login_1.jsp</result>
+<result name="error">loginerror.html</result>
 </action>
 
+</package>
+
+                            <!-- Profiles -->
+
+<package name="profiles" namespace="/core/profiles" extends="struts-default">
+
+<action name="view" class="com.app.core.profiles.actions.ProfileLoader">
+<result name="my-profile" type="tiles">my_profile</result>
+<result name="other-profile" type="tiles">user_profile</result>
+<result name="error" >profile_not_found.html</result>
+</action>
 
 </package>
 </struts>

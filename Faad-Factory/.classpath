@@ -39,5 +39,10 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-core-2.1.8.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/xwork-core-2.1.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-api-3.0.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-compat-3.0.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-core-3.0.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-jsp-3.0.3.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-servlet-3.0.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
