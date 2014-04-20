@@ -4,7 +4,10 @@ package com.app.core.login.actions;
 import java.util.ArrayList;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.struts2.interceptor.ApplicationAware;
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.app.core.models.User;
@@ -14,7 +17,7 @@ import com.opensymphony.xwork2.validator.annotations.*;
 
 
 
-public class Login1 extends ActionSupport implements SessionAware,ApplicationAware{
+public class Login1 extends ActionSupport implements ServletRequestAware,SessionAware,ApplicationAware{
 	/*
 	 * Variable Declarations
 	 */
@@ -23,6 +26,7 @@ public class Login1 extends ActionSupport implements SessionAware,ApplicationAwa
 	
 	private Map<String,Object> session = null;
 	private Map<String,Object> application = null;
+	private HttpServletRequest request;
 	/**
 	 * 
 	 * @return
@@ -69,6 +73,7 @@ public class Login1 extends ActionSupport implements SessionAware,ApplicationAwa
 			if(user.getUserName().equals(userName))
 			{
 				session.put("user", user);
+				session.put("requestedUserName",userName);
 				return SUCCESS;
 			}
 		return ERROR;
@@ -82,6 +87,12 @@ public class Login1 extends ActionSupport implements SessionAware,ApplicationAwa
 	@Override
 	public void setApplication(Map<String, Object> arg0) {
 		application = arg0;
+		
+	}
+
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		request = arg0;
 		
 	}
 	

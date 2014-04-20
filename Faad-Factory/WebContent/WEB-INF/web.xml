@@ -29,18 +29,16 @@
 </filter-mapping>
 
 <!-- Tiles setup -->
-<listener>
-   <listener-class>
-      org.apache.struts2.tiles.StrutsTilesListener
-   </listener-class>
-</listener>
+
 <context-param>
-   <param-name>
+    <param-name>
       org.apache.tiles.impl.BasicTilesContainer.DEFINITIONS_CONFIG
-   </param-name>
-   <param-value>
-      /WEB-INF/tiles.xml
-   </param-value>
-</context-param>
-   
+    </param-name>
+    <param-value>/WEB-INF/tiles.xml</param-value>
+  </context-param>
+
+  <listener>
+    <listener-class>org.apache.struts2.tiles.StrutsTilesListener</listener-class>
+  </listener>
+ 
 </web-app>

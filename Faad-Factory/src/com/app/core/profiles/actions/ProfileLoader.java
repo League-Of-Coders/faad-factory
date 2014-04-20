@@ -23,15 +23,19 @@ public class ProfileLoader extends ActionSupport implements ApplicationAware,Ses
 	@Override
 	public String execute(){
 		//TODO add hibernate later
-		ArrayList<User> users = (ArrayList<User>) application.get("users");
+		System.out.println("PROFILE LOADER : ");
+		requestedUserName = (String)session.get("requestedUserName");
+		ArrayList<User> users = (ArrayList<User>)application.get("users");
 		User currentUser = (User) session.get("user");
 		if(requestedUserName.equals(currentUser.getUserName()))
 		{
+			System.out.println("requested user equals current user");
 			session.put("requestedUser",session.get("user"));
 			return "my-profile";
 		}
 		else
 		{
+			System.out.println("NOT requested user equals current user");
 		for(User user:users)
 			if(user.getUserName().equals(requestedUserName))
 			{

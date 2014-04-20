@@ -9,6 +9,7 @@ import org.apache.struts2.interceptor.ApplicationAware;
 
 
 
+import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.SessionAware;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -17,10 +18,11 @@ import com.app.core.AppEngine;
 import com.app.core.models.User;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class Registration5 extends ActionSupport implements ApplicationAware,SessionAware{
+public class Registration5 extends ActionSupport implements ServletRequestAware,ApplicationAware,SessionAware{
 	private String id;
 	private Map<String,Object> application;
 	private Map<String,Object> faadSession;
+	private HttpServletRequest request;
 	private Session session;
 	public String getId()
 	{
@@ -69,6 +71,7 @@ public class Registration5 extends ActionSupport implements ApplicationAware,Ses
 				
 				//TODO add hibernate session here
 				faadSession.put("user",user);
+				faadSession.put("requestedUserName",user.getUserName());
 				application.remove(user);
 				try
 				{
@@ -80,6 +83,7 @@ public class Registration5 extends ActionSupport implements ApplicationAware,Ses
 					// null pointer i.e users does not exist in application scope
 					ArrayList<User> users = new ArrayList<>();
 					users.add(user);
+					faadSession.put("requestedUserName",user.getUserName());
 					application.put("users", users);
 				}
 						
@@ -109,6 +113,11 @@ public class Registration5 extends ActionSupport implements ApplicationAware,Ses
 	@Override
 	public void setSession(Map<String, Object> arg0) {
 		this.faadSession = arg0;
+		
+	}
+	@Override
+	public void setServletRequest(HttpServletRequest arg0) {
+		request = arg0;
 		
 	}
 }

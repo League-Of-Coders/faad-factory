@@ -1,25 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <!DOCTYPE tiles-definitions PUBLIC
-   "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
-   "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
-
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 <tiles-definitions>
 
    <definition name="baseLayout" template="/core/profiles/baseLayout.jsp">
-      <put-attribute name="header_toolbar"  value="/core/profiles/header_toolbar.jsp"/>
+      <put-attribute name="header_toolbar"  value="/core/profiles//header_toolbar.jsp"/>
       <put-attribute name="basic_info" value="/core/profiles/basic_info.jsp"/>
-      <put-attribute name="widgets"   value="/core/profiles/widgets.jsp"/>
+      <put-attribute name="widgets"   value="/core/profiles/non_editable.jsp"/>
       <put-attribute name="footer"   value="/core/profiles/footer.jsp"/>
    </definition>
 
    <definition name="my_profile" extends="baseLayout">
-      <put-attribute name="widgets"  value="/core/profiles/editable"/>
+      <put-attribute name="widgets"  value="/core/profiles/editable.jsp"/>
       
    </definition>
 
    <definition name="user_profile" extends="baseLayout">
-      <put-attribute name="widgets"   value="/core/profiles/non_editable"/>      
+      <put-attribute name="widgets"   value="/core/profiles/non_editable.jsp"/>      
    </definition>
   
 </tiles-definitions>

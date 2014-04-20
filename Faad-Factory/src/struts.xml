@@ -26,7 +26,10 @@
 </action>
 
 <action name="register_5" class="com.app.core.registration.actions.Registration5" method="r5">
-<result name="success">/profile.jsp</result>
+ <result name="success" type="redirectAction">
+            <param name="actionName">view</param>
+            <param name="namespace">/core/profiles</param>
+ </result>
 <result name="error">errorPages/mailauthfail.html</result>
 </action>
 
@@ -37,7 +40,10 @@
 <package name="login" namespace="/core/login" extends="struts-default">
 
 <action name="log_1" class="com.app.core.login.actions.Login1" method="l1">
-<result name="success">/core/profiles/view</result>
+<result name="success" type="redirectAction">
+<param name="actionName">view</param>
+<param name="namespace">/core/profiles</param>
+</result>
 <result name="input">login_1.jsp</result>
 <result name="error">loginerror.html</result>
 </action>
@@ -47,6 +53,10 @@
                             <!-- Profiles -->
 
 <package name="profiles" namespace="/core/profiles" extends="struts-default">
+
+<result-types>
+	<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+</result-types>
 
 <action name="view" class="com.app.core.profiles.actions.ProfileLoader">
 <result name="my-profile" type="tiles">my_profile</result>
