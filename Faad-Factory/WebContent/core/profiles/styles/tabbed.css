@@ -1,0 +1,39 @@
+@charset "utf-8";
+#wrapper {
+	margin: auto;
+	width: 500px;
+	padding: 1em;
+}
+#tabs {
+	margin: 0px;
+	padding: 0px;
+}
+#tabs ul {
+	margin: 0px;
+	padding: 0px;
+	width: 100%;
+}
+#tabs li {
+	display:block;
+	float: left;
+	text-align:center;
+	border:1px solid #333;
+	background:#000;
+	margin:0;
+	padding:0;
+	width:32%;
+	color:#FFF;
+	cursor:pointer;
+	text-transform:uppercase;
+}
+#tabs li.active{
+	background:#999;
+	border-bottom:1px solid #666;
+}
+.widget_content{
+	width:100%;
+}
+.widget_content div{
+	clear:left;
+	width:100%;
+	height:400px;

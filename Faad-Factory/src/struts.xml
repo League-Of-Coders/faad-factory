@@ -63,6 +63,14 @@
 <result name="other-profile" type="tiles">user_profile</result>
 <result name="error" >profile_not_found.html</result>
 </action>
+</package>
 
+							<!-- Widget Views -->
+<package name="widgets" namespace="/core/widgets" extends="struts-default">
+
+<action name="portfolio-action" class="com.app.core.widgets.Portfolio">
+<result name="update">Portfolio.jsp</result>
+<result name="no-update">Portfolio.jsp</result>
+</action>
 </package>
 </struts>

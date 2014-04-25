@@ -6,11 +6,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Faad Factory : Profile</title>
 </head>
 <body>
 <div class="container">
+<div id = "headerToolbar">
 <tiles:insertAttribute name="header_toolbar" /><br>
+</div>
 <div id = "basicInfo">
  <tiles:insertAttribute name="basic_info" /><br/>
 </div>

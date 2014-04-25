@@ -22,7 +22,7 @@ public class ProfileLoader extends ActionSupport implements ApplicationAware,Ses
 	
 	@Override
 	public String execute(){
-		//TODO add hibernate later
+		//TODO add hibernate later and change comparision to email rather than name. Modify Registration5 and login appropriately
 		System.out.println("PROFILE LOADER : ");
 		requestedUserName = (String)session.get("requestedUserName");
 		ArrayList<User> users = (ArrayList<User>)application.get("users");

@@ -45,5 +45,6 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/tiles-jsp-2.0.6.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-digester-2.0.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-beanutils-1.7.0.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/struts2-dojo-plugin-2.1.8.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
